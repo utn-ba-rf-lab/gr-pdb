@@ -19,5 +19,5 @@
 # Boston, MA 02110-1301, USA.
 
 install(FILES
-    pdb_gr-pdb.block.yml DESTINATION share/gnuradio/grc/blocks
+	    pdb_gr_pdb.block.yml DESTINATION share/gnuradio/grc/blocks
 )

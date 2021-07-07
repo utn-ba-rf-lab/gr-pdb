@@ -19,23 +19,26 @@
 # Boston, MA 02110-1301, USA.
 #
 
-from gnuradio import gr, gr_unittest
-from gnuradio import blocks
-from gr-pdb import gr-pdb
 
-class qa_gr-pdb(gr_unittest.TestCase):
+import numpy
+from gnuradio import gr
 
-    def setUp(self):
-        self.tb = gr.top_block()
+class gr_pdb(gr.sync_block):
+    """
+    docstring for block gr-pdb
+    """
+    def __init__(self):
+        gr.sync_block.__init__(self,
+            name="gr-pdb",
+            in_sig=[numpy.int32])
+          #  out_sig=[<+numpy.float32+>, ])
 
-    def tearDown(self):
-        self.tb = None
+#    def forecast(self, noutput_items, ninput_items_required):
+#        #setup size of input_items[i] for work call
+#        for i in range(len(ninput_items_required)):
+#            ninput_items_required[i] = noutput_items
 
-    def test_001_t(self):
-        # set up fg
-        self.tb.run()
-        # check data
-
-
-if __name__ == '__main__':
-    gr_unittest.run(qa_gr-pdb)
+    def general_work(self, input_items, output_items):
+#        output_items[0][:] = input_items[0]
+#        consume(0, len(input_items[0]))        #self.consume_each(len(input_items[0]))
+        return 0

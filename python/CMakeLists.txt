@@ -32,7 +32,7 @@ endif()
 GR_PYTHON_INSTALL(
     FILES
     __init__.py
-    gr-pdb.py DESTINATION ${GR_PYTHON_DIR}/pdb
+    gr_pdb.py DESTINATION ${GR_PYTHON_DIR}/pdb
 )
 
 ########################################################################
@@ -42,4 +42,4 @@ include(GrTest)
 
 set(GR_TEST_TARGET_DEPS gnuradio-pdb)
 set(GR_TEST_PYTHON_DIRS ${CMAKE_BINARY_DIR}/swig)
-GR_ADD_TEST(qa_gr-pdb ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/qa_gr-pdb.py)
+GR_ADD_TEST(qa_gr_pdb ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/qa_gr_pdb.py)
