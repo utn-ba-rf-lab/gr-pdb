@@ -32,5 +32,5 @@ except ImportError:
     pass
 
 # import any pure python here
-from gr_pdb import gr_pdb
+from .gr_pdb import gr_pdb
 #

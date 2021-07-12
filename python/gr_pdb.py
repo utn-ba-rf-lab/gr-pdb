@@ -27,18 +27,38 @@ class gr_pdb(gr.sync_block):
     """
     docstring for block gr-pdb
     """
-    def __init__(self):
+    def __init__(self,num_bits,sample):
         gr.sync_block.__init__(self,
-            name="gr-pdb",
-            in_sig=[numpy.int32])
-          #  out_sig=[<+numpy.float32+>, ])
+            name="gr_pdb",
+            in_sig=[numpy.float32],
+            out_sig=None)
 
-#    def forecast(self, noutput_items, ninput_items_required):
-#        #setup size of input_items[i] for work call
-#        for i in range(len(ninput_items_required)):
-#            ninput_items_required[i] = noutput_items
+        self.num_bits=num_bits
+        self.sample = sample
+        self.a=0
+        self.b=0
 
-    def general_work(self, input_items, output_items):
+    def calculate(self,sample):
+        self.result = (lambda A,N : float( int ( round( A* (pow(2,(N-1))-1))) / (pow(2,(N-1)) -1) )) (sample,self.num_bits)
+        print(self.result)
+        
+    def set_bits(self,num_bits):
+        print("[INFO] | Self: {}".format(self.num_bits))
+
+        self.num_bits = num_bits
+        print("[INFO] | Slider: {}".format(num_bits))
+
+    def set_sample(self,sample):
+
+        self.sample = sample
+
+    def work(self, input_items, output_items):
+
+        if(self.a!= self.num_bits or self.b!= self.sample):
+          self.calculate(self.sample)
+          self.a=self.num_bits
+          self.b=self.sample
+
 #        output_items[0][:] = input_items[0]
 #        consume(0, len(input_items[0]))        #self.consume_each(len(input_items[0]))
         return 0
