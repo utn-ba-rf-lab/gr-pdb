@@ -5,10 +5,9 @@ category: '[PDB]'
 templates:
 
   imports: import pdb
-  make: pdb.gr_pdb(${nbits},${sample})
+  make: pdb.gr_pdb(${nbits})
   callbacks: 
     - set_bits(${nbits})
-    - set_sample(${sample})
 
 #  Make one 'parameters' list entry for every parameter you want settable from the GUI.
 #     Keys include:
@@ -21,10 +20,6 @@ parameters:
 - id: nbits
   label: Bits
   dtype: int
-
-- id: sample
-  label: Sample
-  dtype: float
 
 #  Make one 'inputs' list entry per input and one 'outputs' list entry per output.
 #  Keys include:

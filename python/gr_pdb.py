@@ -27,14 +27,13 @@ class gr_pdb(gr.sync_block):
     """
     docstring for block gr-pdb
     """
-    def __init__(self,num_bits,sample):
+    def __init__(self,num_bits):
         gr.sync_block.__init__(self,
             name="gr_pdb",
             in_sig=[numpy.float32],
             out_sig=[numpy.float32])
 
         self.num_bits=num_bits
-        self.sample = sample
         self.a=0
         self.b=0
 
@@ -48,9 +47,6 @@ class gr_pdb(gr.sync_block):
         self.num_bits = num_bits
         print("[INFO] | Slider: {}".format(num_bits))
 
-    def set_sample(self,sample):
-
-        self.sample = sample
 
     def work(self, input_items, output_items):
         self.sample = input_items[0]
