@@ -1,6 +1,6 @@
 id: pdb_gr_pdb
-label: gr_pdb
-category: '[rf-lab]'
+label: pdb_block
+category: '[PDB]'
 
 templates:
 
@@ -42,11 +42,12 @@ inputs:
 # vlen: ...
 # optional: ...
 
-  #outputs:
-  #- label: ...
+outputs:
+- label: data_out
   #domain: ...
-  #dtype: ...
+  dtype: float 
   #vlen: ...
+  #at
   #optional: ...
 
 #  'file_format' specifies the version of the GRC yml format used in the file

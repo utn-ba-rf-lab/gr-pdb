@@ -31,7 +31,7 @@ class gr_pdb(gr.sync_block):
         gr.sync_block.__init__(self,
             name="gr_pdb",
             in_sig=[numpy.float32],
-            out_sig=None)
+            out_sig=[numpy.float32])
 
         self.num_bits=num_bits
         self.sample = sample
@@ -53,12 +53,13 @@ class gr_pdb(gr.sync_block):
         self.sample = sample
 
     def work(self, input_items, output_items):
-
+        self.sample = input_items[0]
+        
         if(self.a!= self.num_bits or self.b!= self.sample):
           self.calculate(self.sample)
           self.a=self.num_bits
           self.b=self.sample
 
-#        output_items[0][:] = input_items[0]
+        output_items[0] = input_items[0]
 #        consume(0, len(input_items[0]))        #self.consume_each(len(input_items[0]))
         return 0
