@@ -34,28 +34,28 @@ class gr_pdb(gr.sync_block):
             out_sig=[numpy.float32])
 
         self.num_bits=num_bits
-        self.a=0
-        self.b=0
+        #self.a=0
+        #self.b=0
 
-    def calculate(self,sample):
-        self.result = (lambda A,N : float( int ( round( A* (pow(2,(N-1))-1))) / (pow(2,(N-1)) -1) )) (sample,self.num_bits)
-        print(self.result)
+    def calculate(self):
+        
+        self.result = [(lambda A,N : float( int ( round( A* (pow(2,(N-1))-1))) / (pow(2,(N-1)) -1) )) (self.sample[x],self.num_bits) for x in range(len(self.sample))]
+
+        return self.result
         
     def set_bits(self,num_bits):
-        print("[INFO] | Self: {}".format(self.num_bits))
 
         self.num_bits = num_bits
-        print("[INFO] | Slider: {}".format(num_bits))
 
 
     def work(self, input_items, output_items):
         self.sample = input_items[0]
-        
-        if(self.a!= self.num_bits or self.b!= self.sample):
-          self.calculate(self.sample)
-          self.a=self.num_bits
-          self.b=self.sample
+        output_items[0][:] = self.calculate()
+ 
+        return len(output_items[0])
 
-        output_items[0] = input_items[0]
-#        consume(0, len(input_items[0]))        #self.consume_each(len(input_items[0]))
+        #if(self.a!= self.num_bits or self.b!= self.sample):
+        #self.a=self.num_bits
+        #self.b=self.sample
+
         return 0
