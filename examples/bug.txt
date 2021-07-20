@@ -1,0 +1,82 @@
+mdoallo@mdoallo-pc:~/Descargas/gr-pdb/build$ cmake ..
+-- The CXX compiler identification is GNU 9.3.0
+-- The C compiler identification is GNU 9.3.0
+-- Check for working CXX compiler: /usr/bin/c++
+-- Check for working CXX compiler: /usr/bin/c++ -- works
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+-- Check for working C compiler: /usr/bin/cc
+-- Check for working C compiler: /usr/bin/cc -- works
+-- Detecting C compiler ABI info
+-- Detecting C compiler ABI info - done
+-- Detecting C compile features
+-- Detecting C compile features - done
+-- Build type not specified: defaulting to release.
+-- Found LOG4CPP: /usr/lib/x86_64-linux-gnu/liblog4cpp.so
+-- Found PkgConfig: /usr/bin/pkg-config (found version "0.29.1") 
+-- Checking for module 'gmp'
+--   Found gmp, version 6.2.0
+-- Found GMP: /usr/lib/x86_64-linux-gnu/libgmpxx.so  
+-- Checking for module 'mpir >= 3.0'
+--   No package 'mpir' found
+-- Could NOT find MPIR (missing: MPIRXX_LIBRARY MPIR_LIBRARY MPIR_INCLUDE_DIR) 
+-- Found MPLIB: /usr/lib/x86_64-linux-gnu/libgmpxx.so  
+-- Found Boost: /usr/lib/x86_64-linux-gnu/cmake/Boost-1.71.0/BoostConfig.cmake (found suitable version "1.71.0", minimum required is "1.71.0") found components: date_time program_options filesystem system regex thread unit_test_framework 
+-- Found VOLK: Volk::volk  
+-- User set python executable /usr/bin/python3
+-- Found PythonInterp: /usr/bin/python3 (found version "3.8.10") 
+-- Found PythonLibs: /usr/lib/x86_64-linux-gnu/libpython3.8.so (found suitable exact version "3.8.10") 
+-- Found Git: /usr/bin/git  
+-- Extracting version information from git describe...
+-- Could NOT find Doxygen (missing: DOXYGEN_EXECUTABLE) 
+-- No C++ sources... skipping lib/
+-- Could NOT find Doxygen (missing: DOXYGEN_EXECUTABLE) 
+-- No C++ sources... skipping swig/
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /home/mdoallo/Descargas/gr-pdb/build
+mdoallo@mdoallo-pc:~/Descargas/gr-pdb/build$ make
+Scanning dependencies of target pygen_apps_9a6dd
+[  0%] Built target pygen_apps_9a6dd
+Scanning dependencies of target pygen_python_fce34
+[ 50%] Generating __init__.pyc, gr_pdb.pyc
+[100%] Generating __init__.pyo, gr_pdb.pyo
+[100%] Built target pygen_python_fce34
+mdoallo@mdoallo-pc:~/Descargas/gr-pdb/build$ sudo make install
+[sudo] contraseña para mdoallo: 
+[  0%] Built target pygen_apps_9a6dd
+[100%] Built target pygen_python_fce34
+Install the project...
+-- Install configuration: "Release"
+-- Installing: /usr/local/lib/cmake/pdb/pdbConfig.cmake
+-- Installing: /usr/local/include/pdb/api.h
+-- Installing: /usr/local/lib/python3/dist-packages/pdb/__init__.py
+-- Installing: /usr/local/lib/python3/dist-packages/pdb/gr_pdb.py
+-- Installing: /usr/local/lib/python3/dist-packages/pdb/__init__.pyc
+-- Installing: /usr/local/lib/python3/dist-packages/pdb/gr_pdb.pyc
+-- Installing: /usr/local/lib/python3/dist-packages/pdb/__init__.pyo
+-- Installing: /usr/local/lib/python3/dist-packages/pdb/gr_pdb.pyo
+-- Installing: /usr/local/share/gnuradio/grc/blocks/pdb_gr_pdb.block.yml
+mdoallo@mdoallo-pc:~/Descargas/gr-pdb/build$ sudo ldconfig
+mdoallo@mdoallo-pc:~/Descargas/gr-pdb/build$ gnuradio-companion 
+<<< Welcome to GNU Radio Companion 3.8.1.0 >>>
+
+Block paths:
+        /home/mdoallo/.grc_gnuradio
+        /usr/share/gnuradio/grc/blocks
+        /usr/local/share/gnuradio/grc/blocks
+
+Loading: "/home/mdoallo/Descargas/prueba-4001-2.grc"
+>>> Done
+
+Loading: "/home/mdoallo/Descargas/HackRFOne-WBFM-Rx-8MSpS-grc-3.8.grc"
+>>> Done
+
+Loading: "/home/mdoallo/Descargas/Ruido en PCM-3.8.grc"
+>>> Done
+
+Loading: "/home/mdoallo/Documentos/RF-Lab/gr-pdb/examples/test_1.grc"
+>>> Done
+
