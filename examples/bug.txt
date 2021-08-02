@@ -61,22 +61,18 @@ Install the project...
 -- Installing: /usr/local/share/gnuradio/grc/blocks/pdb_gr_pdb.block.yml
 mdoallo@mdoallo-pc:~/Descargas/gr-pdb/build$ sudo ldconfig
 mdoallo@mdoallo-pc:~/Descargas/gr-pdb/build$ gnuradio-companion 
-<<< Welcome to GNU Radio Companion 3.8.1.0 >>>
 
-Block paths:
-        /home/mdoallo/.grc_gnuradio
-        /usr/share/gnuradio/grc/blocks
-        /usr/local/share/gnuradio/grc/blocks
 
-Loading: "/home/mdoallo/Descargas/prueba-4001-2.grc"
->>> Done
+Executing: /usr/bin/python3 -u /home/mdoallo/Descargas/gr-pdb/examples/Test.py
 
-Loading: "/home/mdoallo/Descargas/HackRFOne-WBFM-Rx-8MSpS-grc-3.8.grc"
->>> Done
+Traceback (most recent call last):
+  File "/home/mdoallo/Descargas/gr-pdb/examples/Test.py", line 207, in <module>
+    main()
+  File "/home/mdoallo/Descargas/gr-pdb/examples/Test.py", line 185, in main
+    tb = top_block_cls()
+  File "/home/mdoallo/Descargas/gr-pdb/examples/Test.py", line 135, in __init__
+    self.pdb_gr_pdb_0 = pdb.gr_pdb(bits)
+AttributeError: module 'pdb' has no attribute 'gr_pdb'
 
-Loading: "/home/mdoallo/Descargas/Ruido en PCM-3.8.grc"
->>> Done
-
-Loading: "/home/mdoallo/Documentos/RF-Lab/gr-pdb/examples/test_1.grc"
->>> Done
+>>> Done (return code 1)
 
