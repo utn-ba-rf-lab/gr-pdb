@@ -21,6 +21,7 @@
 
 
 import numpy
+
 from gnuradio import gr
 
 class gr_pdb(gr.sync_block):
@@ -39,9 +40,9 @@ class gr_pdb(gr.sync_block):
 
     def calculate(self):
         
-        self.result = [(lambda A,N : float( int ( round( A* (pow(2,(N-1))-1))) / (pow(2,(N-1)) -1) )) (self.sample[x],self.num_bits) for x in range(len(self.sample))]
-
+        self.result = [(lambda A,N : float( int ( round( A* (pow(2,(N-1))-1))) / (pow(2,(N-1)) -1) )) ( self.sample[x] if abs(self.sample[x]) < 1 else numpy.sign(self.sample[x]) , self.num_bits) for x in range(len(self.sample))]
         return self.result
+
         
     def set_bits(self,num_bits):
 
