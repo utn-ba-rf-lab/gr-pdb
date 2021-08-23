@@ -78,7 +78,7 @@ blocks:
   id: variable
   parameters:
     comment: ''
-    value: '32000'
+    value: '256000'
   states:
     bus_sink: false
     bus_source: false
@@ -100,7 +100,7 @@ blocks:
     phase: '0'
     samp_rate: samp_rate
     type: float
-    waveform: analog.GR_COS_WAVE
+    waveform: analog.GR_SIN_WAVE
   states:
     bus_sink: false
     bus_source: false
@@ -124,7 +124,7 @@ blocks:
     bus_structure: null
     coordinate: [448, 164.0]
     rotation: 0
-    state: true
+    state: disabled
 - name: pdb_gr_pdb_0
   id: pdb_gr_pdb
   parameters:
