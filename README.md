@@ -1,6 +1,6 @@
 # gr-pdb
 
-##Introducción
+## Introducción
 
 Este repositorio describe los avances de un recurso didáctico útil para vivenciar el impacto de limitar en ancho de banda una señal de audio, como así también el efecto de la adopción inadecuada en la cuantificación de la misma. 
 
