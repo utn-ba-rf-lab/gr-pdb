@@ -1,5 +1,11 @@
 # gr-pdb
 
+## Autores
+
+  Marcelo Doallo                    |  Leandro Bottinelli                    | Fuschetto Martin
+:----------------------------------:|:--------------------------------------:|:-------------------------:
+Email: <m.doallo@frba.utn.edu.ar>   | Email: <leandrobottinelli@gmail.com>   | Email: <marfus@hotmail.es>
+
 ## Introducción
 
 Este repositorio describe los avances de un recurso didáctico útil para vivenciar el impacto de limitar en ancho de banda una señal de audio, como así también el efecto de la adopción inadecuada en la cuantificación de la misma. 
@@ -13,13 +19,6 @@ Se trata de software desarrollado en ambiente de GNU Radio que permite realizar 
 ## Descripcion del modulo 
 
 asdasd
-
-## Autores
-
-  Marcelo Doallo                    |  Leandro Bottinelli                    | Fuschetto Martin
-:----------------------------------:|:--------------------------------------:|:-------------------------:
-Email: <m.doallo@frba.utn.edu.ar>   | Email: <leandrobottinelli@gmail.com>   | Email: <marfus@hotmail.es>
-
 
 #### Dependencias
 
