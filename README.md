@@ -35,7 +35,7 @@ asdasd
 Como correr Docker en Linux 
 ==============================
 
-[Dockerfile](Directorio al archivo Docker)
+[Dockerfile](link)
 
 * Construya el contenedor con:
 ```
