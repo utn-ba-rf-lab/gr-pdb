@@ -33,25 +33,20 @@ Email: <m.doallo@frba.utn.edu.ar>   | Email: <leandrobottinelli@gmail.com>   | E
     * git
     * vim 
 
-#### Como correr Docker 
+Como correr Docker en Linux 
+==============================
 
 [Docker file] (Directorio al archivo Docker)
 
+* Construya el contenedor con:
+```
+docker build -t ubuntu:gnuradio_38_2 . 
+```
+
+* Corra el contenedor con:
 ```
 docker run --net=host --env="DISPLAY" --volume="$HOME/.Xauthority:/root/.Xauthority:rw" --privileged --device /dev/snd -v /home/leandro/gnuradio_38:/home/gnuradio/persistent --group-add=audio    -e PULSE_SERVER=unix:${XDG_RUNTIME_DIR}/pulse/native  -v ${XDG_RUNTIME_DIR}/pulse/native:${XDG_RUNTIME_DIR}/pulse/native -v ~/.config/pulse/cookie:/root/.config/pulse/cookie --group-add $(getent group audio | cut -d: -f3) --device /dev/snd  -it ubuntu:gnuradio_38 bash
 ```
-
-#### Build instructions
-
-    * mkdir build
-    * cd build
-    * cmake ..
-    * make
-    * sudo make install
-    * sudo ldconfig
-
-
-Despues de correr esos comandos dentro de Docker, el bloque "gr-pdb" deberia aparecer en la categoria "" en GNU Radio Companion.
 
 Como correr Docker en windows 
 ==============================
@@ -124,3 +119,16 @@ Una vez dentro del contenedor debera:
 
 
 Felicitaciones ya podra utilizar gnuradio!!
+
+
+Instrucciones para construir el modulo
+=======================================
+    * mkdir build
+    * cd build
+    * cmake ..
+    * make
+    * sudo make install
+    * sudo ldconfig
+
+
+Despues de correr esos comandos dentro de Docker, el bloque "gr-pdb" deberia aparecer en la categoria "" en GNU Radio Companion.
