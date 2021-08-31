@@ -1,11 +1,5 @@
 # gr-pdb
 
-## Autores
-
-  Marcelo Doallo                    |  Leandro Bottinelli                    | Fuschetto Martin
-:----------------------------------:|:--------------------------------------:|:-------------------------:
-Email: <m.doallo@frba.utn.edu.ar>   | Email: <leandrobottinelli@gmail.com>   | Email: <marfus@hotmail.es>
-
 ## Introducción
 
 Este repositorio describe los avances de un recurso didáctico útil para vivenciar el impacto de limitar en ancho de banda una señal de audio, como así también el efecto de la adopción inadecuada en la cuantificación de la misma. 
@@ -16,9 +10,12 @@ El teorema del muestreo es uno de los pilares que dieron paso a las señales PCM
 
 Se trata de software desarrollado en ambiente de GNU Radio que permite realizar experiencias útiles para la formación por competencias centradas en el alumno, al momento de tratar el tema Modulación por Codificación de Pulsos en cursos iniciales de Sistemas de Comunicaciones.
 
-## Descripcion del modulo 
 
-asdasd
+## Autores
+
+  Marcelo Doallo                    |  Leandro Bottinelli                    | Fuschetto Martin
+:----------------------------------:|:--------------------------------------:|:-------------------------:
+Email: <m.doallo@frba.utn.edu.ar>   | Email: <leandrobottinelli@gmail.com>   | Email: <marfus@hotmail.es>
 
 #### Dependencias
 
@@ -82,7 +79,35 @@ Abra "Docker Desktop".
 
 NOTA: Por algun motivo tuve que abrirlo en modo icongnito para que descargue el zip.
 
-2) Siga los siguientes [pasos](https://x410.dev/cookbook/wsl/enabling-sound-in-wsl-ubuntu-let-it-sing/) para abrir el servidor de pulseaudio.
+2) Siga los siguientes para abrir el servidor de pulseaudio. Basado en [link](https://x410.dev/cookbook/wsl/enabling-sound-in-wsl-ubuntu-let-it-sing/).
+
+#### Descomprima los archivos del paso uno.
+<img src=./.docs_repo/img/unzip.png alt="" />
+
+#### Edite 'etc\pulse\default.pa'. 
+<img src=./.docs_repo/img/edit1.png alt="" />
+
+##### NOTA: Tenga en cuenta que por cuestiones de seguridad y privacidad Windows 10 (actualizacion de abril del 2018) restringe lel acceso a los dispositivos de grabacion de audio. Como solo queremos tener sonido simplemente lo deshabilitamos desde el servidor PulseAudio agregando el 'registro = 0'.
+<img src=./.docs_repo/img/edit11.png alt="" />
+
+Esto habilita al servidor PulseAudio a aceptar conexiones sollo desde 127.0.0.1 via TCP.
+
+#### Edite 'etc\pulse\daemon.conf' 
+<img src=./.docs_repo/img/edit2.png alt="" />
+
+Si esta opcion esta seteada en un valor positivo representa el tiempo en segundos que el servidor tardara en terminar cuando el ultimo cliente se desconecte.
+
+#### Corra 'bin\pulseaudio.exe'
+<img src=./.docs_repo/img/run.png alt="" />
+
+'pulseaudio.exe' es el ejecutable para el servidor PulseAudio (tambien conocido como 'Daemon' en los procesos de Linux).
+
+<img src=./.docs_repo/img/run2.png alt="" />
+Cuando corra 'bin\pulseaudio.exe' vera la alerta de 'Windows Firewall' que le preguntara si usted quiere permitir otros dispositivos para conectar al servidor, como usted solo esta usando (127.0.0.1) debe seleccionar cancelar, no tiene que permitir a otros dispositivos.
+
+En el caso de que un error ocurra, el servidor se cierra inmediatamente. Si es el caso vuelva al paso 3 y este seguro de que hizo los cambios correctamente.
+
+CTRL+C para detener el servidor.
 
 ### Editor de texto
 
@@ -109,8 +134,8 @@ docker run  --env="DISPLAY" --volume="$HOME/.Xauthority:/root/.Xauthority:rw" -e
 
 NOTA: "gnuradio_38_2" hace referencia al nombre del contenedor.
 
-Una vez dentro del contenedor debera: 
-=======================================
+###Una vez dentro del contenedor debera: 
+
 
 1) ipconfig, guarde su IPv4-Adress
 2) set-variable -name DISPLAY -value "IPv4-Adress":0.0
@@ -130,4 +155,6 @@ Instrucciones para construir el modulo
     * sudo ldconfig
 
 
-Despues de correr esos comandos dentro de Docker, el bloque "gr-pdb" deberia aparecer en la categoria "" en GNU Radio Companion.
+Despues de correr esos comandos dentro de Docker, el bloque "PDB_Block" deberia aparecer en la categoria "PDB" en GNU Radio Companion.
+
+<img src=./.docs_repo/img/pdb_block_gnu.png alt="" />
