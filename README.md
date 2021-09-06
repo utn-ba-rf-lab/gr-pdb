@@ -47,6 +47,25 @@ docker run --net=host --env="DISPLAY" --volume="$HOME/.Xauthority:/root/.Xauthor
 Como correr Docker en windows 
 ==============================
 
+### Requisitos del sistema para Docker Desktop 
+
+#### WSL 2 backend
+
+1) Windows 10 64-bit: Home or Pro 2004 (build 19041) o superior, Enterprise, o bien Education 1909 (build 18363) o superior.
+2) Habilite WSL 2 en Windows. [Microsoft documentation](https://docs.microsoft.com/en-us/windows/wsl/install-win10)
+3) Los siguientes prerequisitos de hardware son necesarios para correr WSL 2 en Windows 10.
+
+* Procesador 64-vit con "Second Level Address Translation" (SLAT).
+* 4GB de memoria RAM.
+* Soporte de virtualizacion de hardware a nivel de BIOS debe estar habilitado en la configuracion de la BIOS. Para mas informacion dirijase a [Virtualization](https://docs.docker.com/desktop/windows/install/#:~:text=more%20information%2C%20see-,Virtualization.,-Download%20and%20install).
+* Descargue e instale el paquete de actualizacion del [kernel de Linux](https://docs.microsoft.com/windows/wsl/wsl2-kernel).
+
+Nota: Docker solo es compatible con Docker Desktop en Windows para aquellas versiones de Windows 10 que aún se encuentran dentro de la [Línea de tiempo de servicio de Microsoft](https://support.microsoft.com/en-us/help/13853/windows-lifecycle-fact-sheet).
+
+#### Hyper-V backend y contenedores Windows 
+
+1) Hyper-V y contenedores de Windows deben estar habilitadas.
+
 ## Prerequisitos
 
 ### Instalar Xming
