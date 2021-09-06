@@ -32,7 +32,7 @@ Email: <m.doallo@frba.utn.edu.ar>   | Email: <leandrobottinelli@gmail.com>   | E
 Como correr Docker en Linux 
 ==============================
 
-[Descargar Docker desktop](link)
+[Descargar Dockerfile](link)
 
 * Construya el contenedor con:
 ```
