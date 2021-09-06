@@ -17,7 +17,16 @@ Se trata de software desarrollado en ambiente de GNU Radio que permite realizar 
 :----------------------------------:|:--------------------------------------:|:-------------------------:
 Email: <m.doallo@frba.utn.edu.ar>   | Email: <leandrobottinelli@gmail.com>   | Email: <marfus@hotmail.es>
 
-#### Dependencias
+
+## Indice
+1. [Dependencias](#dependencias)
+2. [Como correr Docker en Linux](#docker_linux)
+3. [Como instalar Docker en Windows](#docker_dekstop_windows)
+4. [Correr el contenedor Docker en Windows](#docker_windows)
+5. [Instrucciones para construir el modulo](#cons_modulo)
+
+
+#### Dependencias<a name="dependencias"></a>
 
     * GNU Radio 3.8
     * libboost-all-dev   
@@ -29,7 +38,7 @@ Email: <m.doallo@frba.utn.edu.ar>   | Email: <leandrobottinelli@gmail.com>   | E
     * git
     * vim 
 
-Como correr Docker en Linux 
+Como correr Docker en Linux <a name="docker_linux"></a>
 ==============================
 
 [Descargar Dockerfile](link)
@@ -44,7 +53,7 @@ docker build -t ubuntu:gnuradio_38_2 .
 docker run --net=host --env="DISPLAY" --volume="$HOME/.Xauthority:/root/.Xauthority:rw" --privileged --device /dev/snd -v /home/leandro/gnuradio_38:/home/gnuradio/persistent --group-add=audio    -e PULSE_SERVER=unix:${XDG_RUNTIME_DIR}/pulse/native  -v ${XDG_RUNTIME_DIR}/pulse/native:${XDG_RUNTIME_DIR}/pulse/native -v ~/.config/pulse/cookie:/root/.config/pulse/cookie --group-add $(getent group audio | cut -d: -f3) --device /dev/snd  -it ubuntu:gnuradio_38 bash
 ```
 
-Como instalar Docker en Windows 
+Como instalar Docker en Windows <a name="docker_dekstop_windows"></a>
 ==============================
 
 ### Requisitos del sistema para Docker Desktop 
@@ -133,7 +142,7 @@ CTRL+C para detener el servidor.
 1) Instale su editor de texto preferido, recomiendo Visual Studio Code ya que necesitara la consola.
 
 
-Correr el contenedor Docker en Windows
+Correr el contenedor Docker en Windows <a name="docker_windows"></a>
 =======================================
 
 
@@ -164,7 +173,7 @@ NOTA: "gnuradio_38_2" hace referencia al nombre del contenedor.
 Felicitaciones ya podra utilizar gnuradio!!
 
 
-Instrucciones para construir el modulo
+Instrucciones para construir el modulo<a name="cons_modulo"></a>
 =======================================
     * mkdir build
     * cd build
