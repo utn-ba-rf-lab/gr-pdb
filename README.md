@@ -32,7 +32,7 @@ Email: <m.doallo@frba.utn.edu.ar>   | Email: <leandrobottinelli@gmail.com>   | E
 Como correr Docker en Linux 
 ==============================
 
-[Dockerfile](link)
+[Descargar Docker desktop](link)
 
 * Construya el contenedor con:
 ```
@@ -44,7 +44,7 @@ docker build -t ubuntu:gnuradio_38_2 .
 docker run --net=host --env="DISPLAY" --volume="$HOME/.Xauthority:/root/.Xauthority:rw" --privileged --device /dev/snd -v /home/leandro/gnuradio_38:/home/gnuradio/persistent --group-add=audio    -e PULSE_SERVER=unix:${XDG_RUNTIME_DIR}/pulse/native  -v ${XDG_RUNTIME_DIR}/pulse/native:${XDG_RUNTIME_DIR}/pulse/native -v ~/.config/pulse/cookie:/root/.config/pulse/cookie --group-add $(getent group audio | cut -d: -f3) --device /dev/snd  -it ubuntu:gnuradio_38 bash
 ```
 
-Como correr Docker en windows 
+Como instalar Docker en Windows 
 ==============================
 
 ### Requisitos del sistema para Docker Desktop 
@@ -64,7 +64,7 @@ Nota: Docker solo es compatible con Docker Desktop en Windows para aquellas vers
 
 #### Hyper-V backend y contenedores Windows 
 
-1) Hyper-V y contenedores de Windows deben estar habilitadas.
+1) Hyper-V y contenedores de Windows deben estar habilitados.
 
 ## Prerequisitos
 
