@@ -38,10 +38,10 @@ Email: <m.doallo@frba.utn.edu.ar>   | Email: <leandrobottinelli@gmail.com>   | E
     * git
     * vim 
 
-Como correr Docker en Linux <a name="docker_linux"></a>
-==============================
+Como implementar el proyecto en Linux <a name="docker_linux"></a>
+============================================================
 
-[Descargar Dockerfile](link)
+Obtenga el Dockerfile desde [Descargar Dockerfile](link) sobre un directorio de su preferencia luego proceda con:   
 
 * Construya el contenedor con:
 ```
@@ -53,8 +53,8 @@ docker build -t ubuntu:gnuradio_38_2 .
 docker run --net=host --env="DISPLAY" --volume="$HOME/.Xauthority:/root/.Xauthority:rw" --privileged --device /dev/snd -v /home/leandro/gnuradio_38:/home/gnuradio/persistent --group-add=audio    -e PULSE_SERVER=unix:${XDG_RUNTIME_DIR}/pulse/native  -v ${XDG_RUNTIME_DIR}/pulse/native:${XDG_RUNTIME_DIR}/pulse/native -v ~/.config/pulse/cookie:/root/.config/pulse/cookie --group-add $(getent group audio | cut -d: -f3) --device /dev/snd  -it ubuntu:gnuradio_38 bash
 ```
 
-Como instalar Docker en Windows <a name="docker_dekstop_windows"></a>
-==============================
+Como implementar el proyecto en Windows <a name="docker_dekstop_windows"></a>
+============================================================
 
 ### Requisitos del sistema para Docker Desktop 
 
@@ -77,6 +77,17 @@ Nota: Docker solo es compatible con Docker Desktop en Windows para aquellas vers
 
 ## Prerequisitos
 
+### Instalar Docker desktop
+
+1) [Descargar Docker desktop](https://docs.docker.com/desktop/windows/install/)
+2) Instalar siguiendo el asistente de instalacion. 
+
+### Iniciando Docker desktop
+
+Abra "Docker Desktop".
+
+1) Dirigase a los iconos ocultos de Windows, Docker desktop, click derecho, "Switch to Linux containers...". Si dice Switch to Windows containers... siga con el siguiente paso.
+
 ### Instalar Xming
 1) Descargue una version de dominio publico de [Xming](https://sourceforge.net/projects/xming/files/Xming/6.9.0.31/Xming-6-9-0-31-setup.exe/download).
 2) Instalar siguiendo el asistente de instalacion. 
@@ -89,17 +100,6 @@ Abra "XLaunch" y adopte la siguiente configuracion:
 1) Select display Settings Multiple Windows, Display Number: 0
 2) Select to start Xming Start no client.
 3) Specify parameter settings Clipboard, No Access Control.
-
-### Instalar Docker desktop
-
-1) [Descargar Docker desktop](https://docs.docker.com/desktop/windows/install/)
-2) Instalar siguiendo el asistente de instalacion. 
-
-### Iniciando Docker desktop
-
-Abra "Docker Desktop".
-
-1) Dirigase a los iconos ocultos de Windows, Docker desktop, click derecho, "Switch to Linux containers...". Si dice Switch to Windows containers... siga con el siguiente paso.
 
 ### Instalar Pulseaudio
 
