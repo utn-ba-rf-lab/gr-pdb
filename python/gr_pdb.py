@@ -42,12 +42,10 @@ class gr_pdb(gr.sync_block):
         gr.sync_block.__init__(self,
             name="gr_pdb",
             in_sig=[numpy.float32],
-            out_sig=[numpy.float32,numpy.float32])
+            out_sig=[numpy.float32,numpy.float32,numpy.float32])
 
         self.num_bits=num_bits
         self.companding=companding
-        #self.a=0
-        #self.b=0
 
     def calculate(self):
         
@@ -194,5 +192,6 @@ class gr_pdb(gr.sync_block):
 
         output_items[0][:] = self.calculate()
         output_items[1][:] = self.signal_process(input_items[0])
-        
+        output_items[2][:] = self.signal_compression(input_items[0])
+
         return len(output_items[0])

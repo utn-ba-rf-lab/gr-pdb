@@ -5,7 +5,7 @@ category: '[PDB]'
 templates:
 
   imports: import pdb
-  make: pdb.gr_pdb(${nbits})
+  make: pdb.gr_pdb(${nbits},${companding})
   callbacks: 
     - set_bits(${nbits})
 
@@ -21,6 +21,15 @@ parameters:
   label: Bits
   dtype: int
 
+
+
+- id: companding
+  label: Companding 
+  dtype: string
+  default: "ulaw"
+  options: [ulaw,alaw]
+  option_labels: ["u-Law","A-Law"]
+
 #  Make one 'inputs' list entry per input and one 'outputs' list entry per output.
 #  Keys include:
 #      * label (an identifier for the GUI)
@@ -28,6 +37,7 @@ parameters:
 #      * dtype (e.g. int, float, complex, byte, short, xxx_vector, ...)
 #      * vlen (optional - data stream vector length. Default is 1)
 #      * optional (optional - set to 1 for optional inputs. Default is 0)
+
 
 inputs:
 
@@ -37,13 +47,29 @@ inputs:
 # vlen: ...
 # optional: ...
 
+
 outputs:
-- label: data_out
+- label: Linear output
   #domain: ...
   dtype: float 
   #vlen: ...
   #at
-  #optional: ...
+  optional: true
+
+- label: Companding process output
+  #domain: ...
+  dtype: float 
+  #vlen: ...
+  #at
+  optional: true
+
+- label: Compress output
+  #domain: ...
+  dtype: float 
+  #vlen: ...
+  #at
+  optional: true
+
 
 #  'file_format' specifies the version of the GRC yml format used in the file
 #  and should usually not be changed.

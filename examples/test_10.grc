@@ -104,7 +104,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [176, 12.0]
+    coordinate: [179, 12]
     rotation: 0
     state: enabled
 - name: analog_sig_source_x_0
@@ -126,7 +126,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [56, 303]
+    coordinate: [39, 478]
     rotation: 0
     state: true
 - name: blocks_multiply_const_vxx_0
@@ -144,7 +144,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [509, 343]
+    coordinate: [504, 522]
     rotation: 0
     state: true
 - name: blocks_throttle_0
@@ -163,7 +163,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [304, 343]
+    coordinate: [299, 522]
     rotation: 0
     state: true
 - name: pdb_gr_pdb_0
@@ -180,7 +180,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [716, 331]
+    coordinate: [711, 510]
     rotation: 0
     state: enabled
 - name: qtgui_freq_sink_x_0
@@ -218,7 +218,7 @@ blocks:
     fftsize: '1024'
     freqhalf: 'False'
     grid: 'False'
-    gui_hint: qtgui_tab_widget_0@0
+    gui_hint: qtgui_tab_widget_0@1
     label: Relative Gain
     label1: ''
     label10: ''''''
@@ -260,7 +260,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [1163, 10]
+    coordinate: [1159, 113]
     rotation: 0
     state: true
 - name: qtgui_freq_sink_x_0_1
@@ -298,7 +298,7 @@ blocks:
     fftsize: '1024'
     freqhalf: 'False'
     grid: 'False'
-    gui_hint: qtgui_tab_widget_0@0
+    gui_hint: qtgui_tab_widget_0@1
     label: Relative Gain
     label1: ''
     label10: ''''''
@@ -340,7 +340,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [1159, 463]
+    coordinate: [1145, 545]
     rotation: 0
     state: true
 - name: qtgui_histogram_sink_x_0
@@ -514,7 +514,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [1153, 671]
+    coordinate: [1137, 656]
     rotation: 0
     state: true
 - name: qtgui_tab_widget_0
@@ -523,8 +523,8 @@ blocks:
     alias: ''
     comment: ''
     gui_hint: 1,0,5,5
-    label0: Frecuencia (FFT)
-    label1: Tiempo
+    label0: Tiempo
+    label1: Frecuencia (FFT)
     label10: Tab 10
     label11: Tab 11
     label12: Tab 12
@@ -582,7 +582,7 @@ blocks:
     ctrlpanel: 'False'
     entags: 'True'
     grid: 'True'
-    gui_hint: qtgui_tab_widget_0@1
+    gui_hint: qtgui_tab_widget_0@0
     label1: Signal 1
     label10: Signal 10
     label2: Signal 2
@@ -645,7 +645,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [1155, 131]
+    coordinate: [1157, 7]
     rotation: 0
     state: true
 - name: qtgui_time_sink_x_0_0_0_0
@@ -677,9 +677,9 @@ blocks:
     color9: dark green
     comment: ''
     ctrlpanel: 'False'
-    entags: 'True'
+    entags: 'False'
     grid: 'True'
-    gui_hint: qtgui_tab_widget_0@1
+    gui_hint: qtgui_tab_widget_0@0
     label1: Signal 1
     label10: Signal 10
     label2: Signal 2
@@ -742,7 +742,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [1155, 569]
+    coordinate: [1143, 446]
     rotation: 0
     state: true
 
