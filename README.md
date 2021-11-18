@@ -1,4 +1,4 @@
-[English Readme](./sp_README.md)
+[English Readme](./en_README.md)
 
 # gr-pdb
 
