@@ -1,3 +1,5 @@
+[English Readme](./sp_README.md)
+
 # gr-pdb
 
 ## Introducción
