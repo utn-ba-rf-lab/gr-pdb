@@ -24,21 +24,14 @@
 import numpy
 
 from gnuradio import gr
-from numpy import log, zeros, abs, sign
+from numpy import log, zeros, abs, sign,exp
 
-A = 87.6
-INV_A = numpy.float32(1/A)
-INV_DIV_A = 1/(1+log(A))
-
-MU = 255
-INV_ULAW_DEN = 1/log(1+MU)
-INV_ULAW = numpy.float32(1/MU)
 
 class gr_pdb(gr.sync_block):
     """
     docstring for block gr-pdb
     """
-    def __init__(self,num_bits,companding):
+    def __init__(self,num_bits,companding,constant_u,constant_a):
         gr.sync_block.__init__(self,
             name="gr_pdb",
             in_sig=[numpy.float32],
@@ -46,6 +39,10 @@ class gr_pdb(gr.sync_block):
 
         self.num_bits=num_bits
         self.companding=companding
+        self.constant_u=constant_u
+        self.constant_a=constant_a
+
+
 
     def calculate(self):
         
@@ -57,11 +54,20 @@ class gr_pdb(gr.sync_block):
         
         self.result2 = [(lambda A,N : float( int ( round( A* (pow(2,(N-1))-1))) / (pow(2,(N-1)) -1) )) ( self.sample2[x] if abs(self.sample2[x]) < 1 else numpy.sign(self.sample2[x]) , self.num_bits) for x in range(len(self.sample2))]
         return self.result2
-        
+
     def set_bits(self,num_bits):
 
-        self.num_bits = num_bits
+        self.num_bits=num_bits
+            
+    def set_constant_u(self,constant_u):
 
+        self.constant_u=constant_u
+
+
+
+    def set_constant_a(self,constant_a):
+
+        self.constant_a = constant_a
 
     def lin2alaw(self, x):
         '''
@@ -71,8 +77,10 @@ class gr_pdb(gr.sync_block):
         '''
         
         abs_x = abs(x)                              # Obtengo el módulo de la entrada
-        
-        opt1 = A * abs_x * INV_DIV_A                # Obtengo un vector con los valores para los casos en que mod_x < 1/A
+        INV_DIV_A = 1/(1+log(self.constant_a))
+        INV_A = numpy.float32(1/self.constant_a)
+
+        opt1 = self.constant_a * abs_x * INV_DIV_A                # Obtengo un vector con los valores para los casos en que mod_x < 1/A
         opt2 = 1 + log(abs_x) * INV_DIV_A           # Obtengo un vector con los valores para los casos en que mod_x > 1/A
 
         y = zeros(len(x), dtype = numpy.float32)       # Creo un vector de ceros para guardar la salida
@@ -96,8 +104,11 @@ class gr_pdb(gr.sync_block):
         '''
         abs_x = abs(x)                              # Obtengo el módulo de la entrada
 
-        opt1 = abs_x * (1 + log(A)) * INV_A         # Obtengo un vector con los valores para los casos en que mod_x < 1/1+ ln(A)
-        opt2 = exp(abs_x * (1+log*(A)) -1)* INV_A   # Obtengo un vector con los valores para los casos en que mod_x < 1/1+ ln(A)
+        INV_A = numpy.float32(1/self.constant_a)
+        INV_DIV_A = 1/(1+log(self.constant_a))
+
+        opt1 = abs_x * (1 + log(self.constant_a)) * INV_A         # Obtengo un vector con los valores para los casos en que mod_x < 1/1+ ln(A)
+        opt2 = exp(abs_x * (1+log(self.constant_a)) -1)* INV_A   # Obtengo un vector con los valores para los casos en que mod_x < 1/1+ ln(A)
 
         y = zeros(len(x), dtype = numpy.float32)       # Creo un vector de ceros para guardar la salida
 
@@ -120,7 +131,10 @@ class gr_pdb(gr.sync_block):
         Recibe un vector de floats.
         Devuelve un vector de floats
         '''
-        ulaw_num = log(1 + MU * abs(x)) 
+        
+        INV_ULAW_DEN = 1/log(1+self.constant_u)
+
+        ulaw_num = log(1 + self.constant_u * abs(x)) 
         return sign(x) * ulaw_num * INV_ULAW_DEN
 
 
@@ -131,7 +145,8 @@ class gr_pdb(gr.sync_block):
         Recibe un vector de floats.
         Devuelve un vector de floats
         '''
-        ulaw_num = pow((1+MU),abs(x)) -1
+        INV_ULAW = numpy.float32(1/self.constant_u)
+        ulaw_num = pow((1+ self.constant_u),abs(x)) -1
         return sign(x) * INV_ULAW * ulaw_num
 
 

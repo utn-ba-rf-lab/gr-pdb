@@ -5,9 +5,12 @@ category: '[PDB]'
 templates:
 
   imports: import pdb
-  make: pdb.gr_pdb(${nbits},${companding})
+  make: pdb.gr_pdb(${nbits},${companding_key},${constant_u},${constant_a})
   callbacks: 
     - set_bits(${nbits})
+    - set_constant_a(${constant_a})
+    - set_constant_u(${constant_u})
+
 
 #  Make one 'parameters' list entry for every parameter you want settable from the GUI.
 #     Keys include:
@@ -23,12 +26,26 @@ parameters:
 
 
 
-- id: companding
+- id: companding_key
   label: Companding 
   dtype: string
   default: "ulaw"
   options: [ulaw,alaw]
   option_labels: ["u-Law","A-Law"]
+
+
+- id: constant_u
+  label: u Constant 
+  dtype: float
+  hide: ${ ( 'none' if companding_key == "ulaw"  else 'all')}
+  default: '255'
+
+- id: constant_a
+  label: A Constant 
+  dtype: float
+  hide: ${ ( 'none' if companding_key == "alaw" else 'all')}
+  default: '87.6'
+
 
 #  Make one 'inputs' list entry per input and one 'outputs' list entry per output.
 #  Keys include:
@@ -74,3 +91,14 @@ outputs:
 #  'file_format' specifies the version of the GRC yml format used in the file
 #  and should usually not be changed.
 file_format: 1
+
+documentation: |-
+
+    This is a block that recieves a stream of data in float format(e.g., audio signal) and quantifies
+    this signal depending on the number of bits selected. 
+    It also allows to do nonlinear quantization by selecting U-Law or A-Law
+    to compress and expand the input signal during the quantization
+    process. Adittionally, the constant for the desired companding type 
+    can be selected.
+    It is also has availble an extra ouput to see the input signal compressed
+    and so can be compared with the original one.
