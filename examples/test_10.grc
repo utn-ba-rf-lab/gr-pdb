@@ -126,7 +126,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [39, 478]
+    coordinate: [40, 484.0]
     rotation: 0
     state: true
 - name: blocks_multiply_const_vxx_0
@@ -145,6 +145,23 @@ blocks:
     bus_source: false
     bus_structure: null
     coordinate: [504, 522]
+    rotation: 0
+    state: true
+- name: blocks_null_sink_0
+  id: blocks_null_sink
+  parameters:
+    affinity: ''
+    alias: ''
+    bus_structure_sink: '[[0,],]'
+    comment: ''
+    num_inputs: '1'
+    type: float
+    vlen: '1'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1056, 424.0]
     rotation: 0
     state: true
 - name: blocks_throttle_0
@@ -753,9 +770,10 @@ connections:
 - [pdb_gr_pdb_0, '0', qtgui_freq_sink_x_0, '0']
 - [pdb_gr_pdb_0, '0', qtgui_histogram_sink_x_0, '0']
 - [pdb_gr_pdb_0, '0', qtgui_time_sink_x_0_0_0, '0']
-- [pdb_gr_pdb_0, '1', qtgui_freq_sink_x_0_1, '0']
-- [pdb_gr_pdb_0, '1', qtgui_histogram_sink_x_0_0_0, '0']
-- [pdb_gr_pdb_0, '1', qtgui_time_sink_x_0_0_0_0, '0']
+- [pdb_gr_pdb_0, '1', blocks_null_sink_0, '0']
+- [pdb_gr_pdb_0, '2', qtgui_freq_sink_x_0_1, '0']
+- [pdb_gr_pdb_0, '2', qtgui_histogram_sink_x_0_0_0, '0']
+- [pdb_gr_pdb_0, '2', qtgui_time_sink_x_0_0_0_0, '0']
 
 metadata:
   file_format: 1
