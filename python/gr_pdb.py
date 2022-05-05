@@ -26,7 +26,6 @@ import numpy
 from gnuradio import gr
 from numpy import log, zeros, abs, sign,exp
 
-
 class gr_pdb(gr.sync_block):
     """
     docstring for block gr-pdb
@@ -75,25 +74,30 @@ class gr_pdb(gr.sync_block):
         Recibe un vector de floats.
         Devuelve un vector de floats
         '''
-        
-        abs_x = abs(x)                              # Obtengo el módulo de la entrada
-        INV_DIV_A = 1/(1+log(self.constant_a))
-        INV_A = numpy.float32(1/self.constant_a)
 
-        opt1 = self.constant_a * abs_x * INV_DIV_A                # Obtengo un vector con los valores para los casos en que mod_x < 1/A
-        opt2 = 1 + log(abs_x) * INV_DIV_A           # Obtengo un vector con los valores para los casos en que mod_x > 1/A
 
-        y = zeros(len(x), dtype = numpy.float32)       # Creo un vector de ceros para guardar la salida
+        if(self.constant_a > 0):
+            numpy.seterr(divide = 'ignore') 
+            abs_x = abs(x)                               # Obtengo el módulo de la entrada
+            INV_DIV_A = 1/(1+log(self.constant_a))
+            INV_A = numpy.float32(1/self.constant_a)
 
-        i=0                                         # Seteo un contador para indexar
-        for n in abs_x:                             # Inicio el algoritmo de ley-a
-            if(n < INV_A):
-                y[i] = opt1[i]
-            else:
-                y[i] = opt2[i]
-            i+=1
-        
-        return y*sign(x)
+            opt1 = self.constant_a * abs_x * INV_DIV_A                # Obtengo un vector con los valores para los casos en que mod_x < 1/A
+            opt2 = 1 + log(abs_x) * INV_DIV_A           # Obtengo un vector con los valores para los casos en que mod_x > 1/A
+
+            y = zeros(len(x), dtype = numpy.float32)       # Creo un vector de ceros para guardar la salida
+
+            i=0                                         # Seteo un contador para indexar
+            for n in abs_x:                             # Inicio el algoritmo de ley-a
+                if(n < INV_A):
+                    y[i] = opt1[i]
+                else:
+                    y[i] = opt2[i]
+                i+=1
+            
+            return y*sign(x)
+        else:
+            return x 
 
 
     def alaw2lin(self,x):
@@ -102,27 +106,30 @@ class gr_pdb(gr.sync_block):
         Recibe un vector de floats.
         Devuelve un vector de floats
         '''
-        abs_x = abs(x)                              # Obtengo el módulo de la entrada
+        if(self.constant_u > 0):
+            abs_x = abs(x)                              # Obtengo el módulo de la entrada
 
-        INV_A = numpy.float32(1/self.constant_a)
-        INV_DIV_A = 1/(1+log(self.constant_a))
+            INV_A = numpy.float32(1/self.constant_a)
+            INV_DIV_A = 1/(1+log(self.constant_a))
 
-        opt1 = abs_x * (1 + log(self.constant_a)) * INV_A         # Obtengo un vector con los valores para los casos en que mod_x < 1/1+ ln(A)
-        opt2 = exp(abs_x * (1+log(self.constant_a)) -1)* INV_A   # Obtengo un vector con los valores para los casos en que mod_x < 1/1+ ln(A)
+            opt1 = abs_x * (1 + log(self.constant_a)) * INV_A         # Obtengo un vector con los valores para los casos en que mod_x < 1/1+ ln(A)
+            opt2 = exp(abs_x * (1+log(self.constant_a)) -1)* INV_A   # Obtengo un vector con los valores para los casos en que mod_x < 1/1+ ln(A)
 
-        y = zeros(len(x), dtype = numpy.float32)       # Creo un vector de ceros para guardar la salida
+            y = zeros(len(x), dtype = numpy.float32)       # Creo un vector de ceros para guardar la salida
 
-        i=0                                         # Seteo un contador para indexar
-        for n in abs_x:                             # Inicio el algoritmo de ley-a
+            i=0                                         # Seteo un contador para indexar
+            for n in abs_x:                             # Inicio el algoritmo de ley-a
 
-            if(n < INV_DIV_A):
-                y[i] = opt1[i]
-                
-            elif(n > INV_DIV_A):
-                y[i] = opt2[i]
-            i+=1
+                if(n < INV_DIV_A):
+                    y[i] = opt1[i]
+                    
+                elif(n > INV_DIV_A):
+                    y[i] = opt2[i]
+                i+=1
 
-        return sign(x) * y
+            return sign(x) * y
+        else:
+            return x 
 
 
     def lin2ulaw(self,x):
@@ -131,11 +138,15 @@ class gr_pdb(gr.sync_block):
         Recibe un vector de floats.
         Devuelve un vector de floats
         '''
-        
-        INV_ULAW_DEN = 1/log(1+self.constant_u)
 
+        if(self.constant_u == 0):
+            return x 
+
+        INV_ULAW_DEN = 1/log(1+self.constant_u)
         ulaw_num = log(1 + self.constant_u * abs(x)) 
         return sign(x) * ulaw_num * INV_ULAW_DEN
+
+
 
 
 
@@ -145,6 +156,8 @@ class gr_pdb(gr.sync_block):
         Recibe un vector de floats.
         Devuelve un vector de floats
         '''
+        if(self.constant_u == 0):
+            return x 
         INV_ULAW = numpy.float32(1/self.constant_u)
         ulaw_num = pow((1+ self.constant_u),abs(x)) -1
         return sign(x) * INV_ULAW * ulaw_num
@@ -210,3 +223,4 @@ class gr_pdb(gr.sync_block):
         output_items[2][:] = self.signal_compression(input_items[0])
 
         return len(output_items[0])
+
