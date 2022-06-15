@@ -66,26 +66,26 @@ inputs:
 
 
 outputs:
-- label: Linear output
+- label: Quantized linear output
   #domain: ...
   dtype: float 
   #vlen: ...
   #at
-  optional: true
+  optional: 1
 
 - label: Companding process output
   #domain: ...
   dtype: float 
   #vlen: ...
   #at
-  optional: true
+  optional: 1
 
-- label: Compress output
+- label: Compressed output
   #domain: ...
   dtype: float 
   #vlen: ...
   #at
-  optional: true
+  optional: 1
 
 
 #  'file_format' specifies the version of the GRC yml format used in the file
@@ -100,5 +100,5 @@ documentation: |-
     to compress and expand the input signal during the quantization
     process. Adittionally, the constant for the desired companding type 
     can be selected.
-    It is also has availble an extra ouput to see the input signal compressed
-    and so can be compared with the original one.
+    It also has availble an extra ouput to see the input signal compressed
+    in order that the user is able to compare with the original one at the same time.

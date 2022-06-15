@@ -42,17 +42,16 @@ class gr_pdb(gr.sync_block):
         self.constant_a=constant_a
 
 
-
-    def calculate(self):
+    def signal_quantization(self):
         
         #self.result = [(lambda A,N : float( int ( round( A* (pow(2,(N-1))-1))) / (pow(2,(N-1)) -1) )) (self.sample[x],self.num_bits) for x in range(len(self.sample))]
-        self.result = [(lambda A,N : float( int ( round( A* (pow(2,(N-1))-1))) / (pow(2,(N-1)) -1) )) ( self.sample[x] if abs(self.sample[x]) < 1 else numpy.sign(self.sample[x]) , self.num_bits) for x in range(len(self.sample))]
-        return self.result
-
-    def calculate2(self):
+        #self.result = [(lambda A,N : float( int ( round( A* (pow(2,(N-1))-1))) / (pow(2,(N-1)) -1) )) ( self.sample[x] if abs(self.sample[x]) < 1 else numpy.sign(self.sample[x]) , self.num_bits) for x in range(len(self.sample))]
         
-        self.result2 = [(lambda A,N : float( int ( round( A* (pow(2,(N-1))-1))) / (pow(2,(N-1)) -1) )) ( self.sample2[x] if abs(self.sample2[x]) < 1 else numpy.sign(self.sample2[x]) , self.num_bits) for x in range(len(self.sample2))]
-        return self.result2
+        #self.result2 = [(lambda A,N : float( int ( round( A* (pow(2,(N-1))-1))) / (pow(2,(N-1)) -1) )) ( self.sample2[x] if abs(self.sample2[x]) < 1 else numpy.sign(self.sample2[x]) , self.num_bits) for x in range(len(self.sample2))]
+        
+        self.result = numpy.float_( numpy.int_ ( numpy.round_( self.sample * (pow(2,(self.num_bits-1))-1))) / (pow(2,(self.num_bits-1)) -1) ) 
+
+        return self.result
 
     def set_bits(self,num_bits):
 
@@ -61,7 +60,6 @@ class gr_pdb(gr.sync_block):
     def set_constant_u(self,constant_u):
 
         self.constant_u=constant_u
-
 
 
     def set_constant_a(self,constant_a):
@@ -201,12 +199,12 @@ class gr_pdb(gr.sync_block):
 
         if(self.companding == "ulaw"):        # u-Law
             self.sample2 = self.lin2ulaw(in0)
-            x1 = self.calculate2()
+            x1 = self.signal_quantization()
             x1 = self.ulaw2lin(x1)
 
         elif(self.companding == "alaw"):      # A-Law
             self.sample2 = self.lin2alaw(in0)
-            x1 = self.calculate2()
+            x1 = self.signal_quantization()
             x1 = self.alaw2lin(x1)
         else:                               # Linear
             x1 = in0
@@ -216,9 +214,8 @@ class gr_pdb(gr.sync_block):
 
     def work(self, input_items, output_items):
         self.sample = input_items[0]
-        self.sample2 = input_items[0]
 
-        output_items[0][:] = self.calculate()
+        output_items[0][:] = self.signal_quantization()
         output_items[1][:] = self.signal_process(input_items[0])
         output_items[2][:] = self.signal_compression(input_items[0])
 
