@@ -32,19 +32,40 @@ options:
     state: enabled
 
 blocks:
+- name: Amplitud
+  id: variable_qtgui_range
+  parameters:
+    comment: ''
+    gui_hint: 4,0,1,2
+    label: Amplitud
+    min_len: '200'
+    orient: Qt.Horizontal
+    rangeType: float
+    start: '0'
+    step: '0.05'
+    stop: '2'
+    value: '1'
+    widget: slider
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [296, 12.0]
+    rotation: 0
+    state: true
 - name: Volumen
   id: variable_qtgui_range
   parameters:
     comment: ''
-    gui_hint: 4,2,2,1
+    gui_hint: 4,4,1,2
     label: Volumen
     min_len: '200'
     orient: Qt.Horizontal
     rangeType: float
     start: '0'
-    step: '0.1'
+    step: '0.025'
     stop: '1'
-    value: '0.5'
+    value: '0'
     widget: slider
   states:
     bus_sink: false
@@ -57,12 +78,12 @@ blocks:
   id: variable_qtgui_range
   parameters:
     comment: ''
-    gui_hint: 4,0,1,1
+    gui_hint: 4,2,1,2
     label: "bits de cuantificaic\xF3n"
     min_len: '200'
     orient: Qt.Horizontal
     rangeType: int
-    start: '4'
+    start: '3'
     step: '1'
     stop: '16'
     value: '8'
@@ -71,7 +92,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [272, 12.0]
+    coordinate: [408, 12.0]
     rotation: 0
     state: true
 - name: samp_rate
@@ -91,7 +112,7 @@ blocks:
   parameters:
     affinity: ''
     alias: ''
-    amp: '1'
+    amp: Amplitud
     comment: ''
     freq: '1000'
     maxoutbuf: '0'
@@ -105,7 +126,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [72, 164.0]
+    coordinate: [72, 212.0]
     rotation: 0
     state: true
 - name: audio_sink_1
@@ -122,8 +143,8 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [736, 220.0]
-    rotation: 180
+    coordinate: [872, 292.0]
+    rotation: 0
     state: true
 - name: blocks_multiply_const_vxx_0
   id: blocks_multiply_const_vxx
@@ -140,7 +161,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [752, 156.0]
+    coordinate: [704, 292.0]
     rotation: 0
     state: true
 - name: blocks_null_sink_0
@@ -157,7 +178,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [624, 336.0]
+    coordinate: [552, 352.0]
     rotation: 0
     state: enabled
 - name: blocks_null_sink_0_0
@@ -174,7 +195,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [624, 400.0]
+    coordinate: [552, 400.0]
     rotation: 0
     state: enabled
 - name: pdb_gr_pdb_0
@@ -193,7 +214,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [352, 328.0]
+    coordinate: [344, 328.0]
     rotation: 0
     state: enabled
 - name: qtgui_time_sink_x_0
@@ -227,7 +248,7 @@ blocks:
     ctrlpanel: 'False'
     entags: 'True'
     grid: 'False'
-    gui_hint: 0,0,4,3
+    gui_hint: 0,0,4,6
     label1: Signal 1
     label10: Signal 10
     label2: Signal 2
@@ -250,7 +271,7 @@ blocks:
     marker8: '-1'
     marker9: '-1'
     name: ''
-    nconnections: '1'
+    nconnections: '2'
     size: '512'
     srate: samp_rate
     stemplot: 'False'
@@ -267,7 +288,7 @@ blocks:
     tr_chan: '0'
     tr_delay: '0'
     tr_level: '0.0'
-    tr_mode: qtgui.TRIG_MODE_FREE
+    tr_mode: qtgui.TRIG_MODE_AUTO
     tr_slope: qtgui.TRIG_SLOPE_POS
     tr_tag: '""'
     type: float
@@ -290,15 +311,16 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [800, 276.0]
+    coordinate: [560, 212.0]
     rotation: 0
     state: true
 
 connections:
 - [analog_sig_source_x_0, '0', pdb_gr_pdb_0, '0']
+- [analog_sig_source_x_0, '0', qtgui_time_sink_x_0, '0']
 - [blocks_multiply_const_vxx_0, '0', audio_sink_1, '0']
 - [pdb_gr_pdb_0, '0', blocks_multiply_const_vxx_0, '0']
-- [pdb_gr_pdb_0, '0', qtgui_time_sink_x_0, '0']
+- [pdb_gr_pdb_0, '0', qtgui_time_sink_x_0, '1']
 - [pdb_gr_pdb_0, '1', blocks_null_sink_0, '0']
 - [pdb_gr_pdb_0, '2', blocks_null_sink_0_0, '0']
 
