@@ -9,18 +9,17 @@ Email: <m.doallo@frba.utn.edu.ar>   | Email: <leandrobottinelli@gmail.com>   | E
 La meta de este proyecto es crear un recurso didactico util para vivenciar el impacto de limitar el ancho de banda de una señal de audio, como así también el efecto de la adopción inadecuada en la cuantificación de la misma.
 
 
-#### Dependencias
+#### Dependencia de los siguientes paquetes
 
-    * GNU Radio 3.8
-    * libboost-all-dev   
-    * libcppunit-dev
-    * liblog4cpp5-dev
-    * liborc-dev
-    * swig 
-    * cmake 
-    * git
-    * vim 
-
+    * gnuradio          (Versión >= 3.8)
+    * libboost-all-dev  (Verisón >= 1.71)
+    * libcppunit-dev    (Versión >= 1.15.1)
+    * liblog4cpp5-dev   (Versióin >= 1.1.3)
+    * liborc-dev        (En revisíón)
+    * swig              (Versión >= 4.0.1)
+    * cmake             (Versión >= 3.16.3)
+    * git               (Versión >= 2.25.1)
+    
 #### Como correr Docker 
 
 [Docker file] (Directorio al archivo Docker)
