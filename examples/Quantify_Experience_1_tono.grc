@@ -36,7 +36,7 @@ blocks:
   id: variable_qtgui_range
   parameters:
     comment: ''
-    gui_hint: 4,0,1,2
+    gui_hint: 4,0,1,1
     label: Amplitud
     min_len: '200'
     orient: Qt.Horizontal
@@ -51,6 +51,27 @@ blocks:
     bus_source: false
     bus_structure: null
     coordinate: [296, 12.0]
+    rotation: 0
+    state: true
+- name: Constante
+  id: variable_qtgui_range
+  parameters:
+    comment: ''
+    gui_hint: 4,2,1,2
+    label: Constante
+    min_len: '200'
+    orient: Qt.Horizontal
+    rangeType: float
+    start: '0'
+    step: '1'
+    stop: '255'
+    value: '0'
+    widget: slider
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [571, 13]
     rotation: 0
     state: true
 - name: Volumen
@@ -71,14 +92,14 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [568, 12.0]
+    coordinate: [699, 13]
     rotation: 0
     state: true
 - name: bits
   id: variable_qtgui_range
   parameters:
     comment: ''
-    gui_hint: 4,2,1,2
+    gui_hint: 4,1,1,1
     label: "bits de cuantificaic\xF3n"
     min_len: '200'
     orient: Qt.Horizontal
@@ -178,7 +199,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [552, 352.0]
+    coordinate: [680, 361]
     rotation: 0
     state: enabled
 - name: blocks_null_sink_0_0
@@ -195,7 +216,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [552, 400.0]
+    coordinate: [694, 395]
     rotation: 0
     state: enabled
 - name: pdb_gr_pdb_0
@@ -206,7 +227,7 @@ blocks:
     comment: ''
     companding_key: ulaw
     constant_a: '87.6'
-    constant_u: '255'
+    constant_u: Constante
     maxoutbuf: '0'
     minoutbuf: '0'
     nbits: bits
@@ -311,7 +332,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [560, 212.0]
+    coordinate: [644, 187]
     rotation: 0
     state: true
 
@@ -319,9 +340,9 @@ connections:
 - [analog_sig_source_x_0, '0', pdb_gr_pdb_0, '0']
 - [analog_sig_source_x_0, '0', qtgui_time_sink_x_0, '0']
 - [blocks_multiply_const_vxx_0, '0', audio_sink_1, '0']
-- [pdb_gr_pdb_0, '0', blocks_multiply_const_vxx_0, '0']
-- [pdb_gr_pdb_0, '0', qtgui_time_sink_x_0, '1']
-- [pdb_gr_pdb_0, '1', blocks_null_sink_0, '0']
+- [pdb_gr_pdb_0, '0', blocks_null_sink_0, '0']
+- [pdb_gr_pdb_0, '1', blocks_multiply_const_vxx_0, '0']
+- [pdb_gr_pdb_0, '1', qtgui_time_sink_x_0, '1']
 - [pdb_gr_pdb_0, '2', blocks_null_sink_0_0, '0']
 
 metadata:
