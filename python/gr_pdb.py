@@ -46,10 +46,23 @@ class gr_pdb(gr.sync_block):
         
         #self.result = [(lambda A,N : float( int ( round( A* (pow(2,(N-1))-1))) / (pow(2,(N-1)) -1) )) (self.sample[x],self.num_bits) for x in range(len(self.sample))]
         #self.result = [(lambda A,N : float( int ( round( A* (pow(2,(N-1))-1))) / (pow(2,(N-1)) -1) )) ( self.sample[x] if abs(self.sample[x]) < 1 else numpy.sign(self.sample[x]) , self.num_bits) for x in range(len(self.sample))]
-        
         #self.result2 = [(lambda A,N : float( int ( round( A* (pow(2,(N-1))-1))) / (pow(2,(N-1)) -1) )) ( self.sample2[x] if abs(self.sample2[x]) < 1 else numpy.sign(self.sample2[x]) , self.num_bits) for x in range(len(self.sample2))]
         
-        self.result = numpy.float_( numpy.int_ ( numpy.round_( self.sample * (pow(2,(self.num_bits-1))-1))) / (pow(2,(self.num_bits-1)) -1) ) 
+        # Quatization method without half quantum offset 
+        #self.result = numpy.float_( numpy.int_ ( numpy.round_( self.sample * (pow(2,(self.num_bits-1))-1))) / (pow(2,(self.num_bits-1)) -1) ) 
+
+
+        # Quatization method with half quantum offset to avoid Dead-zone around 0 value
+        M = pow(2,(self.num_bits-1))
+
+        y = numpy.float_(1 + 2 * numpy.int_(numpy.round_(self.sample * M)))   
+       
+        self.result = y/(2 * M - 1)
+
+        for x in range(len(self.result)):
+            if abs(self.result[x]) > 1:
+                self.result[x]=numpy.sign(self.result[x])
+
 
         return self.result
 
