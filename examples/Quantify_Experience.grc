@@ -42,9 +42,9 @@ blocks:
     orient: Qt.Horizontal
     rangeType: float
     start: '0'
-    step: '0.1'
+    step: '0.025'
     stop: '1'
-    value: '0.5'
+    value: '0'
     widget: slider
   states:
     bus_sink: false
@@ -62,7 +62,7 @@ blocks:
     min_len: '200'
     orient: Qt.Horizontal
     rangeType: int
-    start: '4'
+    start: '3'
     step: '1'
     stop: '16'
     value: '8'
