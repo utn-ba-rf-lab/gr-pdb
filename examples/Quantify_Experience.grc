@@ -1,6 +1,7 @@
 options:
   parameters:
     author: ''
+    catch_exceptions: 'True'
     category: '[GRC Hier Blocks]'
     cmake_opt: ''
     comment: ''
@@ -39,7 +40,7 @@ blocks:
     gui_hint: 4,2,2,1
     label: Volumen
     min_len: '200'
-    orient: Qt.Horizontal
+    orient: QtCore.Qt.Horizontal
     rangeType: float
     start: '0'
     step: '0.025'
@@ -60,7 +61,7 @@ blocks:
     gui_hint: 4,0,1,1
     label: "bits de cuantificaic\xF3n"
     min_len: '200'
-    orient: Qt.Horizontal
+    orient: QtCore.Qt.Horizontal
     rangeType: int
     start: '3'
     step: '1'
@@ -135,7 +136,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [624, 336.0]
+    coordinate: [688, 360.0]
     rotation: 0
     state: enabled
 - name: blocks_null_sink_0_0
@@ -152,7 +153,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [624, 400.0]
+    coordinate: [688, 408.0]
     rotation: 0
     state: enabled
 - name: blocks_wavfile_source_0_0
@@ -170,7 +171,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [32, 220.0]
+    coordinate: [40, 348.0]
     rotation: 0
     state: enabled
 - name: pdb_gr_pdb_0

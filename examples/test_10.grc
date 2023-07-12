@@ -1,6 +1,7 @@
 options:
   parameters:
     author: ''
+    catch_exceptions: 'True'
     category: '[GRC Hier Blocks]'
     cmake_opt: ''
     comment: ''
@@ -36,31 +37,31 @@ blocks:
   id: variable_qtgui_range
   parameters:
     comment: ''
-    gui_hint: ''
+    gui_hint: 1,3,1,2
     label: Amplitud
     min_len: '200'
-    orient: Qt.Horizontal
+    orient: QtCore.Qt.Horizontal
     rangeType: float
-    start: '-2'
+    start: '0'
     step: 1/(pow(2,15)-1)
-    stop: '2'
+    stop: '1'
     value: '1'
     widget: counter_slider
   states:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [384, 12]
+    coordinate: [448, 148.0]
     rotation: 0
     state: true
 - name: bits
   id: variable_qtgui_range
   parameters:
     comment: ''
-    gui_hint: ''
+    gui_hint: 0,3,1,2
     label: bits
     min_len: '200'
-    orient: Qt.Horizontal
+    orient: QtCore.Qt.Horizontal
     rangeType: int
     start: '3'
     step: '1'
@@ -71,17 +72,17 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [272, 12.0]
+    coordinate: [448, 12.0]
     rotation: 0
     state: true
 - name: frq
   id: variable_qtgui_range
   parameters:
     comment: ''
-    gui_hint: ''
+    gui_hint: 2,3,1,2
     label: frq
     min_len: '200'
-    orient: Qt.Horizontal
+    orient: QtCore.Qt.Horizontal
     rangeType: int
     start: '0'
     step: '1000'
@@ -92,7 +93,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [544, 7]
+    coordinate: [448, 284.0]
     rotation: 0
     state: true
 - name: samp_rate
@@ -112,12 +113,12 @@ blocks:
   parameters:
     affinity: ''
     alias: ''
-    amp: '1'
+    amp: Amplitud*2
     comment: ''
     freq: '1000'
     maxoutbuf: '0'
     minoutbuf: '0'
-    offset: '0'
+    offset: -Amplitud
     phase: '0'
     samp_rate: samp_rate
     type: float
@@ -126,7 +127,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [40, 484.0]
+    coordinate: [72, 484.0]
     rotation: 0
     state: true
 - name: blocks_multiply_const_vxx_0
@@ -144,7 +145,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [504, 522]
+    coordinate: [440, 524.0]
     rotation: 0
     state: true
 - name: blocks_null_sink_0
@@ -180,7 +181,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [299, 522]
+    coordinate: [280, 524.0]
     rotation: 0
     state: true
 - name: pdb_gr_pdb_0
@@ -189,7 +190,9 @@ blocks:
     affinity: ''
     alias: ''
     comment: ''
-    companding: ulaw
+    companding_key: ulaw
+    constant_a: '87.6'
+    constant_u: '255'
     maxoutbuf: '0'
     minoutbuf: '0'
     nbits: bits
@@ -197,7 +200,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [711, 510]
+    coordinate: [608, 496.0]
     rotation: 0
     state: enabled
 - name: qtgui_freq_sink_x_0
@@ -252,6 +255,7 @@ blocks:
     minoutbuf: '0'
     name: '"Linear Process"'
     nconnections: '1'
+    norm_window: 'False'
     showports: 'False'
     tr_chan: '0'
     tr_level: '0.0'
@@ -270,7 +274,7 @@ blocks:
     width7: '1'
     width8: '1'
     width9: '1'
-    wintype: firdes.WIN_BLACKMAN_hARRIS
+    wintype: window.WIN_BLACKMAN_hARRIS
     ymax: '0'
     ymin: '-120'
   states:
@@ -315,7 +319,7 @@ blocks:
     fftsize: '1024'
     freqhalf: 'False'
     grid: 'False'
-    gui_hint: qtgui_tab_widget_0@1
+    gui_hint: qtgui_tab_widget_0@4
     label: Relative Gain
     label1: ''
     label10: ''''''
@@ -330,8 +334,9 @@ blocks:
     legend: 'True'
     maxoutbuf: '0'
     minoutbuf: '0'
-    name: '"Companding Proc"'
+    name: '"Compressed Proc"'
     nconnections: '1'
+    norm_window: 'False'
     showports: 'False'
     tr_chan: '0'
     tr_level: '0.0'
@@ -350,7 +355,7 @@ blocks:
     width7: '1'
     width8: '1'
     width9: '1'
-    wintype: firdes.WIN_BLACKMAN_hARRIS
+    wintype: window.WIN_BLACKMAN_hARRIS
     ymax: '0'
     ymin: '-120'
   states:
@@ -478,7 +483,7 @@ blocks:
     color9: '"dark green"'
     comment: ''
     grid: 'False'
-    gui_hint: qtgui_tab_widget_0@2
+    gui_hint: qtgui_tab_widget_0@5
     label1: Muestras
     label10: ''
     label2: ''
@@ -500,7 +505,7 @@ blocks:
     marker7: '-1'
     marker8: '-1'
     marker9: '-1'
-    name: '"Histograma Companding"'
+    name: '"Histograma Compressed Proc"'
     nconnections: '1'
     size: '1024'
     style1: '1'
@@ -539,7 +544,7 @@ blocks:
   parameters:
     alias: ''
     comment: ''
-    gui_hint: 1,0,5,5
+    gui_hint: 0,0,3,3
     label0: Tiempo
     label1: Frecuencia (FFT)
     label10: Tab 10
@@ -553,19 +558,19 @@ blocks:
     label18: Tab 18
     label19: Tab 19
     label2: Histograma
-    label3: Tab 3
-    label4: Tab 4
-    label5: Tab 5
+    label3: Tiempo
+    label4: Frecuencia (FFT)
+    label5: Histograma
     label6: Tab 6
     label7: Tab 7
     label8: Tab 8
     label9: Tab 9
-    num_tabs: '3'
+    num_tabs: '6'
   states:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [701, 18]
+    coordinate: [280, 12.0]
     rotation: 0
     state: true
 - name: qtgui_time_sink_x_0_0_0
@@ -596,7 +601,7 @@ blocks:
     color8: dark red
     color9: dark green
     comment: ''
-    ctrlpanel: 'False'
+    ctrlpanel: 'True'
     entags: 'True'
     grid: 'True'
     gui_hint: qtgui_tab_widget_0@0
@@ -639,7 +644,7 @@ blocks:
     tr_chan: '0'
     tr_delay: '0'
     tr_level: '0.0'
-    tr_mode: qtgui.TRIG_MODE_FREE
+    tr_mode: qtgui.TRIG_MODE_AUTO
     tr_slope: qtgui.TRIG_SLOPE_POS
     tr_tag: '""'
     type: float
@@ -693,10 +698,10 @@ blocks:
     color8: dark red
     color9: dark green
     comment: ''
-    ctrlpanel: 'False'
+    ctrlpanel: 'True'
     entags: 'False'
     grid: 'True'
-    gui_hint: qtgui_tab_widget_0@0
+    gui_hint: qtgui_tab_widget_0@3
     label1: Signal 1
     label10: Signal 10
     label2: Signal 2
@@ -718,7 +723,7 @@ blocks:
     marker7: '-1'
     marker8: '-1'
     marker9: '-1'
-    name: '"Companding Proc"'
+    name: '"Compressed Proc"'
     nconnections: '1'
     size: '1024'
     srate: samp_rate
@@ -736,7 +741,7 @@ blocks:
     tr_chan: '0'
     tr_delay: '0'
     tr_level: '0.0'
-    tr_mode: qtgui.TRIG_MODE_FREE
+    tr_mode: qtgui.TRIG_MODE_AUTO
     tr_slope: qtgui.TRIG_SLOPE_POS
     tr_tag: '""'
     type: float
