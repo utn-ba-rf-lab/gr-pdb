@@ -27,21 +27,18 @@ Email: <m.doallo@frba.utn.edu.ar>   | Email: <leandrobottinelli@gmail.com>   | E
 4. [Correr el contenedor Docker en Windows](#docker_windows)
 5. [Instrucciones para construir el modulo](#cons_modulo)
 
+#### Dependencia de los siguientes paquetes
 
-#### Dependencias<a name="dependencias"></a>
-
-    * GNU Radio 3.8
-    * libboost-all-dev   
-    * libcppunit-dev
-    * liblog4cpp5-dev
-    * liborc-dev
-    * swig 
-    * cmake 
-    * git
-    * vim 
-
-Como implementar el proyecto en Linux <a name="docker_linux"></a>
-============================================================
+    * gnuradio          (Versión >= 3.8)
+    * libboost-all-dev  (Verisón >= 1.71)
+    * libcppunit-dev    (Versión >= 1.15.1)
+    * liblog4cpp5-dev   (Versión >= 1.1.3)
+    * liborc-0.4-dev    (Versión >= 0.4.32)
+    * swig              (Versión >= 4.0.1)
+    * cmake             (Versión >= 3.16.3)
+    * git               (Versión >= 2.25.1)
+    
+#### Como correr Docker 
 
 Obtenga el Dockerfile desde [Descargar Dockerfile](link) sobre un directorio de su preferencia luego proceda con:   
 
