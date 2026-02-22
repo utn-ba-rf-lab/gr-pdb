@@ -42,7 +42,7 @@ class gr_pdb(gr.sync_block):
         self.constant_a=constant_a
 
 
-    def signal_quantization(self):
+    def signal_quantization(self,samples):
         
         #self.result = [(lambda A,N : float( int ( round( A* (pow(2,(N-1))-1))) / (pow(2,(N-1)) -1) )) (self.sample[x],self.num_bits) for x in range(len(self.sample))]
         #self.result = [(lambda A,N : float( int ( round( A* (pow(2,(N-1))-1))) / (pow(2,(N-1)) -1) )) ( self.sample[x] if abs(self.sample[x]) < 1 else numpy.sign(self.sample[x]) , self.num_bits) for x in range(len(self.sample))]
@@ -55,7 +55,7 @@ class gr_pdb(gr.sync_block):
         # Quatization method with half quantum offset to avoid Dead-zone around 0 value
         M = pow(2,(self.num_bits-1))
 
-        y = numpy.float_(1 + 2 * numpy.int_(numpy.round_(self.sample * M)))   
+        y = 1 + 2 * numpy.int_(numpy.round_(samples * M))
        
         self.result = y/(2 * M - 1)
 
@@ -211,13 +211,13 @@ class gr_pdb(gr.sync_block):
 
 
         if(self.companding == "ulaw"):        # u-Law
-            self.sample2 = self.lin2ulaw(in0)
-            x1 = self.signal_quantization()
+            in0_ulaw = self.lin2ulaw(in0)
+            x1 = self.signal_quantization(in0_ulaw)
             x1 = self.ulaw2lin(x1)
 
         elif(self.companding == "alaw"):      # A-Law
-            self.sample2 = self.lin2alaw(in0)
-            x1 = self.signal_quantization()
+            in0_alaw = self.lin2alaw(in0)
+            x1 = self.signal_quantization(in0_alaw)
             x1 = self.alaw2lin(x1)
         else:                               # Linear
             x1 = in0
@@ -226,9 +226,7 @@ class gr_pdb(gr.sync_block):
 
 
     def work(self, input_items, output_items):
-        self.sample = input_items[0]
-
-        output_items[0][:] = self.signal_quantization()
+        output_items[0][:] = self.signal_quantization(input_items[0])
         output_items[1][:] = self.signal_process(input_items[0])
         output_items[2][:] = self.signal_compression(input_items[0])
 
