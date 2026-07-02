@@ -55,7 +55,7 @@ class gr_pdb(gr.sync_block):
         # Quatization method with half quantum offset to avoid Dead-zone around 0 value
         M = pow(2,(self.num_bits-1))
 
-        y = 1 + 2 * numpy.int_(numpy.round_(samples * M))
+        y = 1 + 2 * numpy.int_(numpy.round(samples * M))
        
         self.result = y/(2 * M - 1)
 
